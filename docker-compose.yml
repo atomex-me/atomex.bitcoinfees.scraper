@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  crawler:
+    build: './crawler'
+    volumes:
+      - ./output:/code/output
+  server:
+    build: './server'
+    volumes:
+      - ./output:/code/output
+    ports:
+      - "5000:5000"
