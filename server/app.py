@@ -4,7 +4,7 @@ import json
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/getbitcoinfees')
 def hello_world():
     with open('output/items_consistent.json') as json_file:
         data = json.load(json_file)
