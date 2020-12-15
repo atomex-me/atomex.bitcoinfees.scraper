@@ -1,4 +1,4 @@
-import json
+import json, requests
 from flask import Flask
 from datetime import timedelta
 
@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 
 @app.route('/getbitcoinfees')
-def hello_world():
-    data = []
+def main_route():
     with open('output/items_consistent.json') as json_file:
         try:
             json_file_string = json_file.read()
@@ -46,17 +45,20 @@ def hello_world():
             else:
                 data = int(data)
 
-            data = {
-                'fastestFee': data,
-                'halfHourFee': data,
-                'hourFee': data,
-                'totalTxLowerOneHour': total_transactions_lower_hour
-            }
+            if 10 <= data <= 400:
+                data = {
+                    'fastestFee': data,
+                    'halfHourFee': data,
+                    'hourFee': data,
+                    'totalTxLowerOneHour': total_transactions_lower_hour
+                }
+            else:
+                raise Exception('Fetched incorrect Fee!')
 
         except Exception as e:
-            # todo: fetch old fees from https://bitcoinfees.earn.com/api/v1/fees/recommended
             print(e)
-            pass
+            r = requests.get(url='https://bitcoinfees.earn.com/api/v1/fees/recommended')
+            return r.json()
     return json.dumps(data)
 
 
