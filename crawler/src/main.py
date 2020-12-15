@@ -1,7 +1,6 @@
 from scrapy.crawler import CrawlerProcess
 from bitcoinfees_spider import BitcoinFeesSpider
 from time import gmtime, strftime
-import pathlib
 
 
 def run():
@@ -18,7 +17,6 @@ def run():
         process.start()
         time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         print(f"Successfully crawled https://bitcoinfees.net at {time}")
-        print(pathlib.Path(__file__).parent.absolute())
     except Exception:
         print("Error in crawler process")
         return
