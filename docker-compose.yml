@@ -2,10 +2,14 @@ version: '3'
 
 services:
   crawler:
+    container_name: atomex_btc_fee_crawler
+    hostname: atomex_btc_fee_crawler
     build: './crawler'
     volumes:
       - ./output:/code/output
   server:
+    container_name: atomex_btc_fee_server
+    hostname: atomex_btc_fee_server
     build: './server'
     volumes:
       - ./output:/code/output
