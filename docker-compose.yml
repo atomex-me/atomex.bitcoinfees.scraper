@@ -9,5 +9,5 @@ services:
     build: './server'
     volumes:
       - ./output:/code/output
-    ports:
-      - "5000:5000"
+    expose:
+      - 5001
