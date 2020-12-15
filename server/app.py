@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route('/getbitcoinfees')
 def hello_world():
     data = []
-    with open('../output/items_consistent.json') as json_file:
+    with open('output/items_consistent.json') as json_file:
         try:
             json_file_string = json_file.read()
             json_file_string = remove_html_entities(json_file_string)
@@ -53,6 +53,7 @@ def hello_world():
             }
 
         except Exception as e:
+            # todo: fetch old fees from https://bitcoinfees.earn.com/api/v1/fees/recommended
             print(e)
             pass
     return json.dumps(data)
