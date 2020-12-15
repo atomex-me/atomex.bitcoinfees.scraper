@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 @app.route('/getbitcoinfees')
 def main_route():
-    with open('output/items_consistent.json') as json_file:
-        try:
+    try:
+        with open('output/items_consistent.json') as json_file:
             json_file_string = json_file.read()
             json_file_string = remove_html_entities(json_file_string)
             data = json.loads(json_file_string)
@@ -56,12 +56,12 @@ def main_route():
                 }
             else:
                 raise Exception('Fetched incorrect Fee!')
+        return json.dumps(data)
 
-        except Exception as e:
-            print(e)
-            r = requests.get(url='https://bitcoinfees.earn.com/api/v1/fees/recommended')
-            return r.json()
-    return json.dumps(data)
+    except Exception as e:
+        print(e)
+        r = requests.get(url='https://bitcoinfees.earn.com/api/v1/fees/recommended')
+        return r.json()
 
 
 def remove_html_entities(json_string):
