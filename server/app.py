@@ -1,6 +1,8 @@
-import json, requests
-from flask import Flask
+import json
+import requests
 from datetime import timedelta
+
+from flask import Flask
 
 app = Flask(__name__)
 
