@@ -25,12 +25,13 @@ def hello_world():
                 idx = 0
                 for row in data:
                     summ += row['transactions']
-                    if summ > 1000:
-                        if idx == len(data):
-                            idx -= 1
-                        data = data[idx + 1]['feeRate']
-                        break
                     idx += 1
+                    if summ > 1000:
+                        break
+
+                if idx >= len(data):
+                    idx = len(data) - 2
+                data = data[idx]['feeRate']
             else:
                 data = data[2]['feeRate']
 
