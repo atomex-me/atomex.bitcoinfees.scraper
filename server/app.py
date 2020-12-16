@@ -39,11 +39,7 @@ def main_route():
             if '-' in data:
                 fee_from = int(data.split('-')[0])
                 fee_to = int(data.split('-')[1])
-
-                if fee_to - fee_from == 2:
-                    data = fee_to - 1
-                else:
-                    data = fee_to
+                data = int((fee_from + fee_to) / 2)
             else:
                 data = int(data)
 
