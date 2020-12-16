@@ -23,7 +23,7 @@ def main_route():
             if total_transactions_lower_hour > 1000:
                 data.reverse()
                 summ = 0
-                idx = 1
+                idx = 0
                 for row in data:
                     summ += row['transactions']
                     if summ > 1000:
