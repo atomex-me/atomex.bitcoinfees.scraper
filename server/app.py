@@ -23,18 +23,18 @@ def main_route():
             if total_transactions_lower_hour > 1000:
                 data.reverse()
                 summ = 0
-                idx = 0
+                idx = 1
                 for row in data:
                     summ += row['transactions']
-                    idx += 1
                     if summ > 1000:
                         break
+                    idx += 1
 
-                if idx >= len(data):
-                    idx = len(data) - 2
-                data = data[idx]['feeRate']
+                if idx == 0:
+                    idx = 1
+                data = data[idx - 1]['feeRate']
             else:
-                data = data[2]['feeRate']
+                data = data[1]['feeRate']
 
             if '-' in data:
                 fee_from = int(data.split('-')[0])
