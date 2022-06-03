@@ -13,8 +13,8 @@ services:
     build: './server'
     volumes:
       - ./output:/code/output
-    expose:
-      - 5001
+    ports:
+      - 127.0.0.1:5001:5001
     networks:
       - atomex-net
 
