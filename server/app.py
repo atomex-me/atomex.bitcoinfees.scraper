@@ -6,6 +6,8 @@ from flask import Flask
 
 app = Flask(__name__)
 
+MAX_FEE_VALUE = 1500
+
 
 @app.route('/getbitcoinfees')
 def main_route():
@@ -43,7 +45,7 @@ def main_route():
             else:
                 data = int(data)
 
-            if 1 <= data <= 1500:
+            if 1 <= data <= MAX_FEE_VALUE:
                 data = {
                     'fastestFee': data,
                     'halfHourFee': data,
@@ -56,8 +58,13 @@ def main_route():
 
     except Exception as e:
         print(e)
+
+    try:
         r = requests.get(url='https://bitcoinfees.earn.com/api/v1/fees/recommended')
         return r.json()
+    except Exception as e:
+        print(e)
+        return {"fastestFee": MAX_FEE_VALUE, "halfHourFee": MAX_FEE_VALUE, "hourFee": MAX_FEE_VALUE}
 
 
 def remove_html_entities(json_string):
