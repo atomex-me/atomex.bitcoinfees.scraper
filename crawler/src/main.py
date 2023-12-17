@@ -17,8 +17,8 @@ def run():
         process.start()
         time = strftime("%Y-%m-%d %H:%M:%S", gmtime())
         print(f"Successfully crawled https://bitcoinfees.net at {time}")
-    except Exception:
-        print("Error in crawler process")
+    except Exception as ex:
+        print(f"Error in crawler process {ex}")
         return
 
 

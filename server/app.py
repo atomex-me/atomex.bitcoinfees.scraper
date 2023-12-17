@@ -43,7 +43,7 @@ def main_route():
             else:
                 data = int(data)
 
-            if 1 <= data <= 400:
+            if 1 <= data <= 1500:
                 data = {
                     'fastestFee': data,
                     'halfHourFee': data,

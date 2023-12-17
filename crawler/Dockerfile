@@ -1,6 +1,6 @@
-FROM python:3.8
+FROM python:3.10-alpine
 WORKDIR /code
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY src/ .
-CMD [ "/bin/bash", "./run.sh" ]
+CMD [ "/bin/sh", "./run.sh" ]
